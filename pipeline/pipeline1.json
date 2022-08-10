@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1_copy1",
+				"name": "Copy data to Datagang raw SIASUS",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -43,7 +43,8 @@
 						"referenceName": "dataset_susbecant_binary",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "susbecantt"
+							"container": "susbecantt",
+							"folder": "SIASUS"
 						}
 					}
 				],
