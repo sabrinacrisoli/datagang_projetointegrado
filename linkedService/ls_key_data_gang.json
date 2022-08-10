@@ -1,0 +1,12 @@
+{
+	"name": "ls_key_data_gang",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kv-datagang.vault.azure.net/"
+		},
+		"description": "ttt"
+	}
+}

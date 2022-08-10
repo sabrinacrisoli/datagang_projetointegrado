@@ -1,0 +1,28 @@
+{
+	"name": "triggerEvent",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline1",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"filename": "@triggerBody().fileName",
+					"folder": "@triggerBody().folderPath\n"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/susbecantt/blobs/SIASUS/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

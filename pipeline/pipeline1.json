@@ -1,0 +1,78 @@
+{
+	"name": "pipeline1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1_copy1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"wildcardFileName": {
+								"value": "@pipeline().parameters.filename",
+								"type": "Expression"
+							},
+							"deleteFilesAfterCompletion": false
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "dataset_susbecant_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "susbecantt"
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "dataset_datagang_SIASUS_raw_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"container": "raw"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"filename": {
+				"type": "string"
+			},
+			"folder": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"filename": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-08-10T21:01:47Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
