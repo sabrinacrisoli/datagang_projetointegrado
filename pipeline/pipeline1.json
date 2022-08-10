@@ -60,7 +60,7 @@
 			}
 		],
 		"parameters": {
-			"filename": {
+			"container": {
 				"type": "string"
 			},
 			"folder": {
