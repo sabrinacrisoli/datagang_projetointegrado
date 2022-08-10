@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adf-data-gang"
+		},
+		"ls_susbecant_accountKey": {
+			"value": ""
+		},
+		"ls_datagang_properties_typeProperties_url": {
+			"value": "https://sadatagang.dfs.core.windows.net"
+		},
+		"ls_key_data_gang_properties_typeProperties_baseUrl": {
+			"value": "https://kv-datagang.vault.azure.net/"
+		},
+		"ls_susbecant_properties_typeProperties_url": {
+			"value": "https://susbecantt.dfs.core.windows.net/"
+		},
+		"triggerEvent_properties_pipeline1_parameters_filename": {
+			"value": "@triggerBody().fileName"
+		},
+		"triggerEvent_properties_pipeline1_parameters_folder": {
+			"value": "@triggerBody().folderPath\n"
+		},
+		"triggerEvent_properties_typeProperties_scope": {
+			"value": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
+		}
+	}
+}
