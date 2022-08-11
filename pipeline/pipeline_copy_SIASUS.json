@@ -20,6 +20,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "SIASUS",
 							"wildcardFileName": "*",
 							"deleteFilesAfterCompletion": false
 						},
@@ -58,7 +59,7 @@
 			}
 		],
 		"parameters": {
-			"filename": {
+			"container": {
 				"type": "string"
 			},
 			"folder": {
@@ -66,7 +67,10 @@
 			}
 		},
 		"variables": {
-			"filename": {
+			"container": {
+				"type": "String"
+			},
+			"folder": {
 				"type": "String"
 			}
 		},
