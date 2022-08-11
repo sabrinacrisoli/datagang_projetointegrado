@@ -21,7 +21,7 @@
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
 							"wildcardFileName": {
-								"value": "@pipeline().parameters.filename",
+								"value": "@pipeline().parameters.folder",
 								"type": "Expression"
 							},
 							"deleteFilesAfterCompletion": false
