@@ -2,7 +2,7 @@
 	"name": "triggereEvent_SIHSUS",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Started",
+		"runtimeState": "Stopped",
 		"pipelines": [
 			{
 				"pipelineReference": {
