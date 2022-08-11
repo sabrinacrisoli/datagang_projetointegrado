@@ -20,10 +20,7 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFileName": {
-								"value": "@pipeline().parameters.folder",
-								"type": "Expression"
-							},
+							"wildcardFileName": "*",
 							"deleteFilesAfterCompletion": false
 						},
 						"formatSettings": {
@@ -54,7 +51,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"folder": "/SIASUS/"
+							"folder": "SIASUS"
 						}
 					}
 				]
