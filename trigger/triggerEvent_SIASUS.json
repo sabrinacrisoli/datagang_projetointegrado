@@ -2,7 +2,7 @@
 	"name": "triggerEvent_SIASUS",
 	"properties": {
 		"annotations": [],
-		"runtimeState": "Stopped",
+		"runtimeState": "Started",
 		"pipelines": [
 			{
 				"pipelineReference": {
