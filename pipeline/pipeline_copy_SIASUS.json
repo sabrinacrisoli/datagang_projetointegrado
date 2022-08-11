@@ -53,8 +53,7 @@
 						"referenceName": "dataset_datagang_SIASUS_raw_binary",
 						"type": "DatasetReference",
 						"parameters": {
-							"container": "raw",
-							"folder": "/SIASUS"
+							"container": "raw"
 						}
 					}
 				]
