@@ -13,11 +13,21 @@
 					"container": "@triggerBody().fileName",
 					"folder": "@triggerBody().folderPath"
 				}
+			},
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline_copy_SIHSUS",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"container": "@triggerBody().fileName",
+					"folder": "@triggerBody().folderPath"
+				}
 			}
 		],
 		"type": "BlobEventsTrigger",
 		"typeProperties": {
-			"blobPathBeginsWith": "/susbecantt/blobs/SIASUS/",
+			"blobPathBeginsWith": "/susbecantt/blobs/SIHSUS/",
 			"ignoreEmptyBlobs": true,
 			"scope": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt",
 			"events": [
