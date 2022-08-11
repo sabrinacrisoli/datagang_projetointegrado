@@ -17,13 +17,19 @@
 		"ls_susbecant_properties_typeProperties_url": {
 			"value": "https://susbecantt.dfs.core.windows.net/"
 		},
-		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_container": {
+		"triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_container": {
 			"value": "@triggerBody().fileName"
 		},
-		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_folder": {
-			"value": "@triggerBody().folderPath\n"
+		"triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_folder": {
+			"value": "@triggerBody().folderPath"
 		},
-		"triggerEvent_properties_typeProperties_scope": {
+		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container": {
+			"value": "@triggerBody().fileName"
+		},
+		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
+			"value": "@triggerBody().folderPath"
+		},
+		"triggerEvent_SIASUS_properties_typeProperties_scope": {
 			"value": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
 		}
 	}
