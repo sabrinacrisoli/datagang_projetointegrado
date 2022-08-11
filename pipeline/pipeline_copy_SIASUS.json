@@ -37,7 +37,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "dataset_susbecant_binary",
+						"referenceName": "dataset_origem_susbecant",
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "susbecantt",
@@ -47,7 +47,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "dataset_datagang_SIASUS_raw_binary",
+						"referenceName": "dataset_destino_datagang",
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",

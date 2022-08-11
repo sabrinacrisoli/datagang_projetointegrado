@@ -1,5 +1,5 @@
 {
-	"name": "dataset_datagang_SIASUS_raw_binary",
+	"name": "dataset_destino_datagang",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_datagang",

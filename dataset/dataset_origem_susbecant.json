@@ -1,5 +1,5 @@
 {
-	"name": "dataset_susbecant_binary",
+	"name": "dataset_origem_susbecant",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_susbecant",
