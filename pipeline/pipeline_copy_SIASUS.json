@@ -54,10 +54,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "raw",
-							"folder": {
-								"value": "@pipeline().parameters.folder",
-								"type": "Expression"
-							}
+							"folder": "SIASUS"
 						}
 					}
 				]
