@@ -1,9 +1,9 @@
 {
-	"name": "pipeline_copy_SIASUS",
+	"name": "pipeline_copy_SIHSUS",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data to Datagang raw SIASUS",
+				"name": "Copy data to Datagang raw SIHSUS",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -44,7 +44,7 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "susbecantt",
-							"folder": "SIASUS"
+							"folder": "SIHSUS"
 						}
 					}
 				],
