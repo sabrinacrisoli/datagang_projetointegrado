@@ -13,16 +13,6 @@
 					"container": "@triggerBody().fileName",
 					"folder": "@triggerBody().folderPath"
 				}
-			},
-			{
-				"pipelineReference": {
-					"referenceName": "pipeline_copy_SIHSUS",
-					"type": "PipelineReference"
-				},
-				"parameters": {
-					"container": "@triggerBody().fileName",
-					"folder": "@triggerBody().folderPath"
-				}
 			}
 		],
 		"type": "BlobEventsTrigger",
