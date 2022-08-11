@@ -50,7 +50,7 @@
 						"referenceName": "dataset_destino_datagang",
 						"type": "DatasetReference",
 						"parameters": {
-							"filename": "raw",
+							"container": "raw",
 							"folder": "SIASUS"
 						}
 					}
