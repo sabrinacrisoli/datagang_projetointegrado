@@ -17,10 +17,10 @@
 		"ls_susbecant_properties_typeProperties_url": {
 			"value": "https://susbecantt.dfs.core.windows.net/"
 		},
-		"triggerEvent_properties_pipeline1_parameters_filename": {
+		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_container": {
 			"value": "@triggerBody().fileName"
 		},
-		"triggerEvent_properties_pipeline1_parameters_folder": {
+		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_folder": {
 			"value": "@triggerBody().folderPath\n"
 		},
 		"triggerEvent_properties_typeProperties_scope": {

@@ -23,11 +23,11 @@
 			"type": "string",
 			"defaultValue": "https://susbecantt.dfs.core.windows.net/"
 		},
-		"triggerEvent_properties_pipeline1_parameters_filename": {
+		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_container": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
-		"triggerEvent_properties_pipeline1_parameters_folder": {
+		"triggerEvent_properties_pipeline_copy_SIASUS_parameters_folder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath\n"
 		},
@@ -74,11 +74,11 @@
 					"ls_datagang_properties_typeProperties_url": {
 						"value": "[parameters('ls_datagang_properties_typeProperties_url')]"
 					},
-					"triggerEvent_properties_pipeline1_parameters_filename": {
-						"value": "[parameters('triggerEvent_properties_pipeline1_parameters_filename')]"
+					"triggerEvent_properties_pipeline_copy_SIASUS_parameters_container": {
+						"value": "[parameters('triggerEvent_properties_pipeline_copy_SIASUS_parameters_container')]"
 					},
-					"triggerEvent_properties_pipeline1_parameters_folder": {
-						"value": "[parameters('triggerEvent_properties_pipeline1_parameters_folder')]"
+					"triggerEvent_properties_pipeline_copy_SIASUS_parameters_folder": {
+						"value": "[parameters('triggerEvent_properties_pipeline_copy_SIASUS_parameters_folder')]"
 					},
 					"triggerEvent_properties_typeProperties_scope": {
 						"value": "[parameters('triggerEvent_properties_typeProperties_scope')]"
