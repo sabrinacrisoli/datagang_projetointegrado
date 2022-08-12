@@ -229,10 +229,7 @@
 						"typeProperties": {
 							"notebookPath": "/Users/treissil@emeal.nttdata.com/Bronze/etl-bronze",
 							"baseParameters": {
-								"folder": {
-									"value": "data.csv",
-									"type": "Expression"
-								}
+								"output": "*.csv"
 							}
 						},
 						"linkedServiceName": {
