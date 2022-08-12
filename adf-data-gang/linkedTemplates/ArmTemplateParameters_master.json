@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adf-data-gang"
 		},
+		"ls_databricks_accessToken": {
+			"value": ""
+		},
 		"ls_susbecant_accountKey": {
 			"value": ""
 		},
@@ -23,13 +26,16 @@
 		"triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_folder": {
 			"value": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container": {
+		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+			"value": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
+		},
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container": {
 			"value": "@triggerBody().fileName"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
 			"value": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+		"triggereEvent_SIHSUS_properties_typeProperties_scope": {
 			"value": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
 		},
 		"containerUri": {

@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-data-gang"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"ls_susbecant_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_susbecant'"
@@ -31,15 +35,19 @@
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container": {
+		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
+		},
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+		"triggereEvent_SIHSUS_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
 		},
@@ -70,6 +78,9 @@
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
 					},
+					"ls_databricks_accessToken": {
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
 					"ls_susbecant_accountKey": {
 						"value": "[parameters('ls_susbecant_accountKey')]"
 					},
@@ -88,14 +99,17 @@
 					"triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_folder": {
 						"value": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_folder')]"
 					},
-					"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container": {
-						"value": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container')]"
-					},
-					"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
-						"value": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder')]"
-					},
 					"triggerEvent_SIASUS_properties_typeProperties_scope": {
 						"value": "[parameters('triggerEvent_SIASUS_properties_typeProperties_scope')]"
+					},
+					"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container": {
+						"value": "[parameters('triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container')]"
+					},
+					"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
+						"value": "[parameters('triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder')]"
+					},
+					"triggereEvent_SIHSUS_properties_typeProperties_scope": {
+						"value": "[parameters('triggereEvent_SIHSUS_properties_typeProperties_scope')]"
 					}
 				}
 			},

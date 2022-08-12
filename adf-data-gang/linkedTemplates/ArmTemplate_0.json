@@ -7,6 +7,10 @@
 			"metadata": "Data Factory name",
 			"defaultValue": "adf-data-gang"
 		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
 		"ls_susbecant_accountKey": {
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_susbecant'"
@@ -31,15 +35,19 @@
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container": {
+		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
+		},
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container": {
 			"type": "string",
 			"defaultValue": "@triggerBody().fileName"
 		},
-		"triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
+		"triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder": {
 			"type": "string",
 			"defaultValue": "@triggerBody().folderPath"
 		},
-		"triggerEvent_SIASUS_properties_typeProperties_scope": {
+		"triggereEvent_SIHSUS_properties_typeProperties_scope": {
 			"type": "string",
 			"defaultValue": "/subscriptions/d44271f6-fec8-44b4-b79f-a0fd742c7602/resourceGroups/susbecantt/providers/Microsoft.Storage/storageAccounts/susbecantt"
 		}
@@ -48,6 +56,31 @@
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_databricks')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://adb-3457327856710425.5.azuredatabricks.net",
+					"accessToken": {
+						"type": "SecureString",
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
+					"newClusterNodeType": "Standard_DS3_v2",
+					"newClusterNumOfWorker": "1",
+					"newClusterSparkEnvVars": {
+						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+					},
+					"newClusterVersion": "10.4.x-scala2.12",
+					"newClusterInitScripts": [],
+					"clusterOption": "Fixed"
+				}
+			},
+			"dependsOn": []
+		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_key_data_gang')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -80,7 +113,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataset_susbecant_binary')]",
+			"name": "[concat(parameters('factoryName'), '/dataset_origem_susbecant')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -140,45 +173,7 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataset_datagang_SIASUS_raw_binary')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_datagang",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"container": {
-						"type": "string"
-					},
-					"folder": {
-						"type": "string",
-						"defaultValue": "SIASUS"
-					}
-				},
-				"annotations": [],
-				"type": "Binary",
-				"typeProperties": {
-					"location": {
-						"type": "AzureBlobFSLocation",
-						"folderPath": {
-							"value": "@dataset().folder",
-							"type": "Expression"
-						},
-						"fileSystem": {
-							"value": "@dataset().container",
-							"type": "Expression"
-						}
-					}
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_datagang')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('factoryName'), '/dataset_datagang_SIHSUS_raw_binary')]",
+			"name": "[concat(parameters('factoryName'), '/dataset_destino_datagang')]",
 			"type": "Microsoft.DataFactory/factories/datasets",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -238,10 +233,8 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFileName": {
-										"value": "@pipeline().parameters.folder",
-										"type": "Expression"
-									},
+									"wildcardFolderPath": "SIASUS",
+									"wildcardFileName": "*",
 									"deleteFilesAfterCompletion": false
 								},
 								"formatSettings": {
@@ -258,7 +251,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "dataset_susbecant_binary",
+								"referenceName": "dataset_origem_susbecant",
 								"type": "DatasetReference",
 								"parameters": {
 									"container": "susbecantt",
@@ -268,14 +261,11 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "dataset_datagang_SIASUS_raw_binary",
+								"referenceName": "dataset_destino_datagang",
 								"type": "DatasetReference",
 								"parameters": {
 									"container": "raw",
-									"folder": {
-										"value": "@pipeline().parameters.folder",
-										"type": "Expression"
-									}
+									"folder": "SIASUS"
 								}
 							}
 						]
@@ -294,7 +284,10 @@
 					}
 				},
 				"variables": {
-					"filename": {
+					"container": {
+						"type": "String"
+					},
+					"folder": {
 						"type": "String"
 					}
 				},
@@ -302,8 +295,8 @@
 				"lastPublishTime": "2022-08-10T21:01:47Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/dataset_susbecant_binary')]",
-				"[concat(variables('factoryId'), '/datasets/dataset_datagang_SIASUS_raw_binary')]"
+				"[concat(variables('factoryId'), '/datasets/dataset_origem_susbecant')]",
+				"[concat(variables('factoryId'), '/datasets/dataset_destino_datagang')]"
 			]
 		},
 		{
@@ -330,10 +323,8 @@
 								"storeSettings": {
 									"type": "AzureBlobFSReadSettings",
 									"recursive": true,
-									"wildcardFileName": {
-										"value": "@pipeline().parameters.folder",
-										"type": "Expression"
-									},
+									"wildcardFolderPath": "SIHSUS",
+									"wildcardFileName": "*",
 									"deleteFilesAfterCompletion": false
 								},
 								"formatSettings": {
@@ -350,7 +341,7 @@
 						},
 						"inputs": [
 							{
-								"referenceName": "dataset_susbecant_binary",
+								"referenceName": "dataset_origem_susbecant",
 								"type": "DatasetReference",
 								"parameters": {
 									"container": "susbecantt",
@@ -360,17 +351,47 @@
 						],
 						"outputs": [
 							{
-								"referenceName": "dataset_datagang_SIASUS_raw_binary",
+								"referenceName": "dataset_destino_datagang",
 								"type": "DatasetReference",
 								"parameters": {
 									"container": "raw",
-									"folder": {
-										"value": "@pipeline().parameters.folder",
-										"type": "Expression"
-									}
+									"folder": "SIHSUS"
 								}
 							}
 						]
+					},
+					{
+						"name": "Notebook1",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "Copy data to Datagang raw SIHSUS",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "7.00:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": "/Users/treissil@emeal.nttdata.com/Bronze/etl-bronze",
+							"baseParameters": {
+								"input": {
+									"value": "@pipeline().parameters.name",
+									"type": "Expression"
+								}
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "ls_databricks",
+							"type": "LinkedServiceReference"
+						}
 					}
 				],
 				"policy": {
@@ -383,10 +404,16 @@
 					},
 					"folder": {
 						"type": "string"
+					},
+					"name": {
+						"type": "string"
 					}
 				},
 				"variables": {
-					"filename": {
+					"container": {
+						"type": "String"
+					},
+					"folder": {
 						"type": "String"
 					}
 				},
@@ -394,8 +421,9 @@
 				"lastPublishTime": "2022-08-10T21:01:47Z"
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/dataset_susbecant_binary')]",
-				"[concat(variables('factoryId'), '/datasets/dataset_datagang_SIASUS_raw_binary')]"
+				"[concat(variables('factoryId'), '/datasets/dataset_origem_susbecant')]",
+				"[concat(variables('factoryId'), '/datasets/dataset_destino_datagang')]",
+				"[concat(variables('factoryId'), '/linkedServices/ls_databricks')]"
 			]
 		},
 		{
@@ -404,7 +432,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
+				"runtimeState": "Stopped",
 				"pipelines": [
 					{
 						"pipelineReference": {
@@ -414,16 +442,6 @@
 						"parameters": {
 							"container": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_container')]",
 							"folder": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIASUS_parameters_folder')]"
-						}
-					},
-					{
-						"pipelineReference": {
-							"referenceName": "pipeline_copy_SIHSUS",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"container": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_container')]",
-							"folder": "[parameters('triggerEvent_SIASUS_properties_pipeline_copy_SIHSUS_parameters_folder')]"
 						}
 					}
 				],
@@ -438,7 +456,39 @@
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/pipeline_copy_SIASUS')]",
+				"[concat(variables('factoryId'), '/pipelines/pipeline_copy_SIASUS')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/triggereEvent_SIHSUS')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "pipeline_copy_SIHSUS",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"container": "[parameters('triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_container')]",
+							"folder": "[parameters('triggereEvent_SIHSUS_properties_pipeline_copy_SIHSUS_parameters_folder')]"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/susbecantt/blobs/SIHSUS",
+					"ignoreEmptyBlobs": true,
+					"scope": "[parameters('triggereEvent_SIHSUS_properties_typeProperties_scope')]",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
 				"[concat(variables('factoryId'), '/pipelines/pipeline_copy_SIHSUS')]"
 			]
 		}
