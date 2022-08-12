@@ -77,7 +77,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/treissil@emeal.nttdata.com/Bronze/etl-bronze"
+					"notebookPath": "/Users/treissil@emeal.nttdata.com/Bronze/etl-bronze",
+					"baseParameters": {
+						"input": "@pipeline().parameters.name"
+					}
 				},
 				"linkedServiceName": {
 					"referenceName": "ls_databricks",
@@ -90,6 +93,9 @@
 				"type": "string"
 			},
 			"folder": {
+				"type": "string"
+			},
+			"name": {
 				"type": "string"
 			}
 		},
