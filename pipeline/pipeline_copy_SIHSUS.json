@@ -79,8 +79,8 @@
 				"typeProperties": {
 					"notebookPath": "/Users/treissil@emeal.nttdata.com/Bronze/etl-bronze",
 					"baseParameters": {
-						"folder": {
-							"value": "data.csv",
+						"output": {
+							"value": "@pipeline().parameters.folder",
 							"type": "Expression"
 						}
 					}
